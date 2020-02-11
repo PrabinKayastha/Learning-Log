@@ -9,5 +9,5 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     # Page that hows all topic.
-    path('topic/', views.topics, name='topics')
+    path('topics/', views.topics, name='topics')
 ]

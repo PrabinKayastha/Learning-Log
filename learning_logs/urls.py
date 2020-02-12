@@ -8,6 +8,10 @@ urlpatterns = [
     # Homepage
     path('', views.index, name='index'),
 
-    # Page that hows all topic.
-    path('topics/', views.topics, name='topics')
+    # Page that shows all topics.
+    path('topics/', views.topics, name='topics'),
+
+    # Details page for a single topic.
+    path('topics/<int:topic_id>/', views.topic, name = 'topic')
+
 ]

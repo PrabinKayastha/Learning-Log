@@ -79,7 +79,8 @@ def edit_entry(request, entry_id):
     """Edit existing entry"""
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
-
+    if not check_entry_owner(request, entry):
+        raise Http404
     if request.method != 'POST':
         # Initial request; pre-fill the form with the current entry.
         form = EntryForm(instance=entry)
@@ -99,3 +100,10 @@ def check_topic_owner(request, topic):
     Returns 'True' if the user making the request and the owner of the topic are same.
     """
     return (request.user == topic.owner)
+
+
+def check_entry_owner(request, entry):
+    """
+    Returns 'True' if the user making the request and the owner of the topic are same.
+    """
+    return (request.user == entry.owner)

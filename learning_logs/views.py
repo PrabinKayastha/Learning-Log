@@ -66,6 +66,7 @@ def new_entry(request, topic_id):
         if form.is_valid():
             new_entry = form.save(commit=False)
             new_entry.topic = topic
+            new_entry.owner = request.user
             new_entry.save()
             return redirect('learning_logs:topic', topic_id=topic_id)
 
